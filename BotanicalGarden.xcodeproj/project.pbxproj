@@ -7,14 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF03AEA21ECDD79F00F10C70 /* GardenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF03AEA11ECDD79F00F10C70 /* GardenController.swift */; };
+		FF03AEA61ECDE0B600F10C70 /* AccessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF03AEA51ECDE0B600F10C70 /* AccessController.swift */; };
 		FF5C47341ECC7A4300DE69C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5C47331ECC7A4300DE69C0 /* AppDelegate.swift */; };
 		FF5C47361ECC7A4300DE69C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5C47351ECC7A4300DE69C0 /* ViewController.swift */; };
 		FF5C47391ECC7A4300DE69C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF5C47371ECC7A4300DE69C0 /* Main.storyboard */; };
 		FF5C473B1ECC7A4300DE69C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF5C473A1ECC7A4300DE69C0 /* Assets.xcassets */; };
 		FF5C473E1ECC7A4300DE69C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF5C473C1ECC7A4300DE69C0 /* LaunchScreen.storyboard */; };
+		FF5C47471ECCBF8A00DE69C0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5C47461ECCBF8A00DE69C0 /* MapKit.framework */; };
+		FF5C474B1ECDA9E600DE69C0 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5C474A1ECDA9E600DE69C0 /* MapController.swift */; };
+		FF9C46631ED2082E00B45F43 /* PlantDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9C46621ED2082E00B45F43 /* PlantDetailController.swift */; };
+		FF9C46651ED2269600B45F43 /* PlantTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9C46641ED2269600B45F43 /* PlantTableController.swift */; };
+		FF9C46671ED22D3700B45F43 /* PlantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9C46661ED22D3700B45F43 /* PlantTableViewCell.swift */; };
+		FFA6E8FA1F0E7FD8008E036B /* NewPlantsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6E8F91F0E7FD8008E036B /* NewPlantsController.swift */; };
+		FFCB96CB1EF0081A008E547B /* OpeningController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCB96CA1EF0081A008E547B /* OpeningController.swift */; };
+		FFCB96D11EF00D8B008E547B /* OpeningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCB96D01EF00D8B008E547B /* OpeningCell.swift */; };
+		FFCB96D71EF016DA008E547B /* TicketsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCB96D61EF016DA008E547B /* TicketsController.swift */; };
+		FFCB96D91EF019F1008E547B /* TicketsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCB96D81EF019F1008E547B /* TicketsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FF03AEA11ECDD79F00F10C70 /* GardenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GardenController.swift; sourceTree = "<group>"; };
+		FF03AEA51ECDE0B600F10C70 /* AccessController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessController.swift; sourceTree = "<group>"; };
 		FF5C47301ECC7A4300DE69C0 /* BotanicalGarden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BotanicalGarden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF5C47331ECC7A4300DE69C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF5C47351ECC7A4300DE69C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +36,16 @@
 		FF5C473A1ECC7A4300DE69C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF5C473D1ECC7A4300DE69C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF5C473F1ECC7A4300DE69C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF5C47461ECCBF8A00DE69C0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		FF5C474A1ECDA9E600DE69C0 /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		FF9C46621ED2082E00B45F43 /* PlantDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlantDetailController.swift; path = ../PlantDetailController.swift; sourceTree = "<group>"; };
+		FF9C46641ED2269600B45F43 /* PlantTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantTableController.swift; sourceTree = "<group>"; };
+		FF9C46661ED22D3700B45F43 /* PlantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlantTableViewCell.swift; path = ../PlantTableViewCell.swift; sourceTree = "<group>"; };
+		FFA6E8F91F0E7FD8008E036B /* NewPlantsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPlantsController.swift; sourceTree = "<group>"; };
+		FFCB96CA1EF0081A008E547B /* OpeningController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningController.swift; sourceTree = "<group>"; };
+		FFCB96D01EF00D8B008E547B /* OpeningCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningCell.swift; sourceTree = "<group>"; };
+		FFCB96D61EF016DA008E547B /* TicketsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketsController.swift; sourceTree = "<group>"; };
+		FFCB96D81EF019F1008E547B /* TicketsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF5C47471ECCBF8A00DE69C0 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +65,7 @@
 			children = (
 				FF5C47321ECC7A4300DE69C0 /* BotanicalGarden */,
 				FF5C47311ECC7A4300DE69C0 /* Products */,
+				FF5C47451ECCBF8900DE69C0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +80,33 @@
 		FF5C47321ECC7A4300DE69C0 /* BotanicalGarden */ = {
 			isa = PBXGroup;
 			children = (
+				FFA6E8F91F0E7FD8008E036B /* NewPlantsController.swift */,
+				FF9C46661ED22D3700B45F43 /* PlantTableViewCell.swift */,
+				FF9C46621ED2082E00B45F43 /* PlantDetailController.swift */,
 				FF5C47331ECC7A4300DE69C0 /* AppDelegate.swift */,
+				FF9C46641ED2269600B45F43 /* PlantTableController.swift */,
 				FF5C47351ECC7A4300DE69C0 /* ViewController.swift */,
+				FF5C474A1ECDA9E600DE69C0 /* MapController.swift */,
 				FF5C47371ECC7A4300DE69C0 /* Main.storyboard */,
 				FF5C473A1ECC7A4300DE69C0 /* Assets.xcassets */,
 				FF5C473C1ECC7A4300DE69C0 /* LaunchScreen.storyboard */,
 				FF5C473F1ECC7A4300DE69C0 /* Info.plist */,
+				FF03AEA11ECDD79F00F10C70 /* GardenController.swift */,
+				FFCB96D01EF00D8B008E547B /* OpeningCell.swift */,
+				FFCB96CA1EF0081A008E547B /* OpeningController.swift */,
+				FFCB96D61EF016DA008E547B /* TicketsController.swift */,
+				FFCB96D81EF019F1008E547B /* TicketsCell.swift */,
+				FF03AEA51ECDE0B600F10C70 /* AccessController.swift */,
 			);
 			path = BotanicalGarden;
+			sourceTree = "<group>";
+		};
+		FF5C47451ECCBF8900DE69C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF5C47461ECCBF8A00DE69C0 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,6 +142,11 @@
 					FF5C472F1ECC7A4300DE69C0 = {
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -136,8 +186,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF9C46651ED2269600B45F43 /* PlantTableController.swift in Sources */,
 				FF5C47361ECC7A4300DE69C0 /* ViewController.swift in Sources */,
+				FFCB96D11EF00D8B008E547B /* OpeningCell.swift in Sources */,
+				FF5C474B1ECDA9E600DE69C0 /* MapController.swift in Sources */,
+				FFA6E8FA1F0E7FD8008E036B /* NewPlantsController.swift in Sources */,
+				FF9C46671ED22D3700B45F43 /* PlantTableViewCell.swift in Sources */,
+				FF9C46631ED2082E00B45F43 /* PlantDetailController.swift in Sources */,
+				FF03AEA21ECDD79F00F10C70 /* GardenController.swift in Sources */,
 				FF5C47341ECC7A4300DE69C0 /* AppDelegate.swift in Sources */,
+				FFCB96D71EF016DA008E547B /* TicketsController.swift in Sources */,
+				FF03AEA61ECDE0B600F10C70 /* AccessController.swift in Sources */,
+				FFCB96CB1EF0081A008E547B /* OpeningController.swift in Sources */,
+				FFCB96D91EF019F1008E547B /* TicketsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +360,7 @@
 				FF5C47441ECC7A4300DE69C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
