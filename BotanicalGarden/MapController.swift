@@ -8,13 +8,18 @@
 
 import UIKit
 import MapKit
+import Firebase
 
 class MapController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var pickerView: UIPickerView!
     var locationManager:CLLocationManager!
+//    let plantsRef = Firebase.Database.database().reference().child("plants")
     
-    let filter = ["All", "Flowers", "Trees", "Bushes"]
+    
+    var plants : [Plant] = []
+    
+    let filter = ["Perennials", "Trees"]
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -34,6 +39,7 @@ class MapController: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         super.viewDidLoad()
         //self.mapView.delegate = self;
         //self.mapView.showsUserLocation = YES;
+  //      observePlants();
         let initialLocation = CLLocation(latitude: 51.116096, longitude: 17.047801)
         let regionRadius: CLLocationDistance = 300
         func centerMapOnLocation(location: CLLocation) {
@@ -41,7 +47,27 @@ class MapController: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
             mapView.setRegion(coordinateRegion, animated: true)
         }
         centerMapOnLocation(location: initialLocation)
+
+        
+        for var i in(0..<plants.count){
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: plants[i].latitude, longitude: plants[i].longitude)
+            //annotation.title = plants[i].name
+            annotation.subtitle = plants[i].name
+            mapView.addAnnotation(annotation)
+        }
     }
+    
+//    func observePlants() {
+//        plantsRef.observe(.value, with: {(snapshot) in
+//            let values = snapshot.value as! [NSDictionary?]
+//            for var (index, obj) in values.enumerated() {
+//                if let d = obj {
+//                    self.plants.append(Plant(id: index, d: d))
+//                }
+//            }
+//        })
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

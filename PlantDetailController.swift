@@ -12,14 +12,20 @@ class PlantDetailController: UIViewController {
     
     @IBOutlet var plantImageView:UIImageView!
     @IBOutlet var plantNameLabel: UILabel!
+    @IBOutlet var plantLatinLabel: UILabel!
+    @IBOutlet var plantDetailTextView: UITextView!
 
     var plantImage = ""
     var plantName = ""
+    var plantLatin = ""
+    var plantDetail = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         plantImageView.image = UIImage(named: plantImage)
         plantNameLabel.text = plantName
+        plantLatinLabel.text = plantLatin
+        plantDetailTextView.text = plantDetail
 
         // Do any additional setup after loading the view.
     }

@@ -6,17 +6,20 @@
 //  Copyright © 2017 paraelle. All rights reserved.
 //
 
-import UIKit
-
+/*import UIKit
+import Firebase
 class PlantTableController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
 
+    let plantsRef = Firebase.Database.database().reference().child("plants")
+    
     @IBAction func backButton(){
         self.dismiss(animated: true, completion: nil)
     }
     
-    var plantNames = ["Amaranth", "Amaryllis", "Anemone", "Aster", "Azalea", "Begonia", "Bellflower", "Bergamot", "Bird of Paradise", "Bluebell", "Bottlebrush", "Buttercup", "Camellias", "Carnation", "Cherry Blossom", "Chrysanthemum", "Clover", "Columbine", "Crocus", "Daisy"]
+    var plantNames : [String] = []
+    var plantImages : [String] = []
     
-    var plantImages = ["amaranth.jpg", "amaryllis.jpg", "anemone.jpg", "aster.jpg", "azalea.jpg", "begonia.jpg", "bellflower.jpg", "bergamot.jpg", "bird of paradise.jpg", "bluebell.jpg", "bottlebrush.jpg", "buttercup.jpg", "camellias.jpg", "carnation.jpg", "cherry blossom.jpg", "chrysanthemum.jpg", "clover.jpg", "columbine.jpg", "crocus.jpg", "daisy.jpg"]
+    //var plantImages = ["amaranth.jpg", "amaryllis.jpg", "anemone.jpg", "aster.jpg", "azalea.jpg", "begonia.jpg", "bellflower.jpg", "bergamot.jpg", "bird of paradise.jpg", "bluebell.jpg", "bottlebrush.jpg", "buttercup.jpg", "camellias.jpg", "carnation.jpg", "cherry blossom.jpg", "chrysanthemum.jpg", "clover.jpg", "columbine.jpg", "crocus.jpg", "daisy.jpg"]
     
 
     
@@ -37,22 +40,33 @@ class PlantTableController: UITableViewController, UISearchBarDelegate, UISearch
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        plantNames = getPlants();
+
+        for i in 1..<plantNames.count{
+            plantImages[i] += plantNames[i].lowercased() + ".jpg"
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    func getPlants() -> [String] {
+        let plantsString = plantsRef.description()
+        let plantsBlob = plantsString.data(using: .utf8)!
+        let plants = try! JSONDecoder().decode([String].self, from: plantsBlob)
+        return plants
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         // Make footerview so it fill up size of the screen
         // The button is aligned to bottom of the footerview
         // using autolayout constraints
@@ -90,3 +104,4 @@ class PlantTableController: UITableViewController, UISearchBarDelegate, UISearch
         }
     }
 }
+*/
