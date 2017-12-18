@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "NewPlantsController.viewDidLoad():NewPlantsController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in NewPlantsController.observePlants():NewPlantsController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "snapshot.value as! [NSDictionary?]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NewPlantsController.getPlants():NewPlantsController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.plantsRef.value(forKey:&quot;&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

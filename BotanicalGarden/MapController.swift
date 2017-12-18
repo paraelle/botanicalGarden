@@ -10,16 +10,30 @@ import UIKit
 import MapKit
 import Firebase
 
+class Garden {
+    var name: String?
+    var boundary: [CLLocationCoordinate2D] = []
+    
+    var midCoordinate = CLLocationCoordinate2D()
+    var overlayTopLeftCoordinate = CLLocationCoordinate2D()
+    var overlayTopRightCoordinate = CLLocationCoordinate2D()
+    var overlayBottomLeftCoordinate = CLLocationCoordinate2D()
+    var overlayBottomRightCoordinate = CLLocationCoordinate2D()
+    
+    var overlayBoundingMapRect: MKMapRect?
+}
+
 class MapController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var pickerView: UIPickerView!
     var locationManager:CLLocationManager!
-//    let plantsRef = Firebase.Database.database().reference().child("plants")
     
-    
-    var plants : [Plant] = []
-    
-    let filter = ["Perennials", "Trees"]
+    let filter = ["All", "Perennials", "Trees"]
+
+    var perennials: [Plant] = []
+    var trees: [Plant] = []
+    var all: [Plant] = []
+    var plant: Plant!
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -33,41 +47,131 @@ class MapController: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         return filter.count
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch filter[row] {
+            case "Perennials":
+                addPins(plants_list: self.perennials)
+            case "Trees":
+                addPins(plants_list: self.trees)
+            case "All":
+                addPins(plants_list: plantsService.plants)
+            default:
+                addPins(plants_list: plantsService.plants)
+        }
+    }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.mapView.delegate = self;
         //self.mapView.showsUserLocation = YES;
-  //      observePlants();
+        observePlants();
         let initialLocation = CLLocation(latitude: 51.116096, longitude: 17.047801)
         let regionRadius: CLLocationDistance = 300
         func centerMapOnLocation(location: CLLocation) {
             let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 1.5)
             mapView.setRegion(coordinateRegion, animated: true)
         }
+        //pickerView.selectRow(0, inComponent: 0, animated: true)
         centerMapOnLocation(location: initialLocation)
-
-        
-        for var i in(0..<plants.count){
+    
+    }
+    
+    func addPins(plants_list: [Plant]){
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        for plant in plants_list {
             let annotation = MKPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: plants[i].latitude, longitude: plants[i].longitude)
+            annotation.coordinate = CLLocationCoordinate2D(latitude: plant.latitude, longitude: plant.longitude)
             //annotation.title = plants[i].name
-            annotation.subtitle = plants[i].name
-            mapView.addAnnotation(annotation)
+            annotation.subtitle = plant.name
+            self.mapView.addAnnotation(annotation)
         }
     }
     
-//    func observePlants() {
-//        plantsRef.observe(.value, with: {(snapshot) in
-//            let values = snapshot.value as! [NSDictionary?]
-//            for var (index, obj) in values.enumerated() {
-//                if let d = obj {
-//                    self.plants.append(Plant(id: index, d: d))
-//                }
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "MyPin"
+
+        if annotation.isKind(of: MKUserLocation.self) {
+            return nil
+        }
+
+        // Reuse the annotation if possible
+        var annotationView:MKPinAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
+
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+        }
+
+        let leftIconView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 53, height: 53))
+        leftIconView.image = UIImage(named: plant.photo)
+        annotationView?.leftCalloutAccessoryView = leftIconView
+        annotationView?.pinTintColor = UIColor.orange
+
+        return annotationView
+    }
+    
+    class ParkMapOverlay: NSObject, MKOverlay {
+        var coordinate: CLLocationCoordinate2D
+        var boundingMapRect: MKMapRect
+        
+        init(garden: Garden) {
+            boundingMapRect = garden.overlayBoundingMapRect!
+            coordinate = garden.midCoordinate
+        }
+    }
+    
+    class ParkMapOverlayView: MKOverlayRenderer {
+        var overlayImage: UIImage
+        
+        init(overlay:MKOverlay, overlayImage:UIImage) {
+            self.overlayImage = overlayImage
+            super.init(overlay: overlay)
+        }
+        
+        override func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext) {
+            guard let imageReference = overlayImage.cgImage else { return }
+            
+            let rect = self.rect(for: overlay.boundingMapRect)
+            context.scaleBy(x: 1.0, y: -1.0)
+            context.translateBy(x: 0.0, y: -rect.size.height)
+            context.draw(imageReference, in: rect)
+        }
+    }
+    
+    func addOverlay() {
+//        let overlay = ParkMapOverlay(garden: Garden())
+//        mapView.add(overlay)
+    }
+    
+    func loadSelectedOptions() {
+        mapView.removeOverlays(mapView.overlays)
+        
+//        for option in selectedOptions {
+//            switch (option) {
+//            case .mapOverlay:
+//                addOverlay()
+//            default:
+//                break;
 //            }
-//        })
-//    }
+//        }
+    }
+
+    
+    
+    func observePlants() {
+        plantsService.observe(handler: {(plants) in
+            for plant in plants {
+                if plant.type == "Perennial"{
+                    self.perennials.append(plant)
+                } else if plant.type == "Tree"{
+                    self.trees.append(plant)
+                }
+            }
+            self.addPins(plants_list: plantsService.plants)
+        })
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

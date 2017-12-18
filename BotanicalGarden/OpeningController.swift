@@ -15,7 +15,7 @@ class OpeningController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     var names = ["Botanical Garden", "Ticket offices", "May - August", "April, October - November"]
-    var hours = ["is opened everyday from 1st April until 12th of November", "8:00-18:00", "8:00-20:00", "8:00-19:00"]
+    var hours = ["opened everyday from 1st Apr. until 12th Nov.", "8:00-18:00", "8:00-20:00", "8:00-19:00"]
 
     override func viewDidLoad() {
         super.viewDidLoad()

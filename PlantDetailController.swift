@@ -15,17 +15,16 @@ class PlantDetailController: UIViewController {
     @IBOutlet var plantLatinLabel: UILabel!
     @IBOutlet var plantDetailTextView: UITextView!
 
-    var plantImage = ""
-    var plantName = ""
-    var plantLatin = ""
-    var plantDetail = ""
+    var plant : Plant? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        plantImageView.image = UIImage(named: plantImage)
-        plantNameLabel.text = plantName
-        plantLatinLabel.text = plantLatin
-        plantDetailTextView.text = plantDetail
+        if let plant = plant {
+            plantImageView.image = UIImage(named: plant.photo)
+            plantNameLabel.text = plant.name
+            plantLatinLabel.text = plant.latin_name
+            plantDetailTextView.text = plant.description
+        }
 
         // Do any additional setup after loading the view.
     }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 struct Plant {
     var id: Int
@@ -29,3 +30,36 @@ struct Plant {
         self.type = d["type"] as! String
     }
 }
+
+class PlantsService {
+    var plants: [Plant] = []
+    var listeners: [([Plant]) -> Void] = []
+    let plantsRef = Firebase.Database.database().reference().child("plants")
+
+    func observePlants() {
+        plantsRef.observe(.value, with: {(snapshot) in
+            let values = snapshot.value as! [NSDictionary?]
+            for (index, obj) in values.enumerated() {
+                if let d = obj {
+                    self.plants.append(Plant(id: index, d: d))
+                }
+            }
+            self.plants.sort(by: {(a: Plant, b: Plant) in a.name < b.name})
+            self.notify();
+        })
+    }
+    func notify() {
+        for listener in listeners {
+            listener(plants)
+        }
+    }
+    func observe(handler: @escaping ([Plant]) -> Void) {
+        listeners.append(handler) // register listener
+        handler(plants) // run once with current value
+    }
+    init() {
+        observePlants()
+    }
+}
+
+let plantsService = PlantsService()
