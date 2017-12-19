@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Firebase
+import GoogleMaps
 
 class Garden {
     var name: String?
@@ -24,7 +25,7 @@ class Garden {
 }
 
 class MapController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-    @IBOutlet var mapView: MKMapView!
+    @IBOutlet var mapView: GMSMapView!
     @IBOutlet var pickerView: UIPickerView!
     var locationManager:CLLocationManager!
     
@@ -60,31 +61,28 @@ class MapController: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         }
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //self.mapView.delegate = self;
-        //self.mapView.showsUserLocation = YES;
+    override func loadView() {
+        super.loadView()
         observePlants();
         let initialLocation = CLLocation(latitude: 51.116096, longitude: 17.047801)
-        let regionRadius: CLLocationDistance = 300
         func centerMapOnLocation(location: CLLocation) {
-            let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 1.5)
-            mapView.setRegion(coordinateRegion, animated: true)
+            let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 19)
+            self.mapView.camera = camera
+            print(self.mapView)
         }
         //pickerView.selectRow(0, inComponent: 0, animated: true)
         centerMapOnLocation(location: initialLocation)
-    
     }
-    
+
     func addPins(plants_list: [Plant]){
-        self.mapView.removeAnnotations(self.mapView.annotations)
+        self.mapView.clear()
         for plant in plants_list {
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: plant.latitude, longitude: plant.longitude)
-            //annotation.title = plants[i].name
-            annotation.subtitle = plant.name
-            self.mapView.addAnnotation(annotation)
+            let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: plant.latitude, longitude: plant.longitude))
+            marker.title = plant.name
+            marker.map = mapView
+            print(plant.name)
         }
+        
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -144,7 +142,7 @@ class MapController: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
     }
     
     func loadSelectedOptions() {
-        mapView.removeOverlays(mapView.overlays)
+//        mapView.removeOverlays(mapView.overlays)
         
 //        for option in selectedOptions {
 //            switch (option) {
